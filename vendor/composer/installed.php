@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '6859298e8ddd15f21db76c6c37c571dba3075261',
+    'reference' => '30b0ba4bd2a4c1baa6b7548ebe6bb5680151a887',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '6859298e8ddd15f21db76c6c37c571dba3075261',
+      'reference' => '30b0ba4bd2a4c1baa6b7548ebe6bb5680151a887',
+    ),
+    'components/jquery' => 
+    array (
+      'pretty_version' => 'v3.7.1',
+      'version' => '3.7.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8edc7785239bb8c2ad2b83302b856a1d61de60e7',
     ),
     'twbs/bootstrap' => 
     array (
