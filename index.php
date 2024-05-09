@@ -34,10 +34,27 @@
       <!-- Se cargan las vistas aqui -->
     </div>
 
+    <div id="modalContent">
+      <!-- Se cargan los modales aqui -->
+    </div>
+
     <script>
       $(document).ready(function() {
+        // Cargar la vista de propiedades por defecto
+        $.ajax({
+          url: 'properties.php',
+          type: 'GET',
+          success: function(data) {
+            $('#content').html(data);
+          },
+        });
+
+        // Cargar las vistas al hacer click en el navbar
         $('.nav-link').click(function(e) {
           e.preventDefault();
+
+          $('.nav-link').removeClass('active');
+          $(this).addClass('active');
 
           var page = $(this).data('page');
 
