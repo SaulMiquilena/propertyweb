@@ -8,6 +8,8 @@ Se sigue la estructura general de el patrón Modelo-Vista-Controlador (MVC), don
 
 En el archivo `db.php` se encapsulan las operaciones de la base de datos dentro de funciones que proporcionan una interfaz para acceder y manipular datos.
 
+En el archivo `propertyweb.sql` se encuentran las tablas para la base de datos llamada `propertyweb`, es una exportación de MySQL.
+
 La estructura:
 
 Modelo:
