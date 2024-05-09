@@ -21,7 +21,7 @@
                       <th>Email</th>
                       <th>Número de Identificación</th>
                       <th>Dirección</th>                    
-                      <th width="15%">Acción</th>
+                      <th width="5%">Acción</th>
                     </tr>
                   </thead>
                   <tbody>';
@@ -40,16 +40,22 @@
             <td>' . $owner['IdentificationNumber'] . '</td>
             <td>' . $owner['Address'] . '</td>
             <td>
-              <button type="button" 
-                data-id="' . $owner['Id'] . '" 
-                data-name="' . $owner['Name'] . '"
-                data-telephone="' . $owner['Telephone'] . '"
-                data-email="' . $owner['Email'] . '"
-                data-identificationnumber="' . $owner['IdentificationNumber'] . '"
-                data-address="' . $owner['Address'] . '"
-                class="btn btn-primary editar_owner">Editar
-              </button>
-              <button type="button" data-id="' . $owner['Id'] . '" class="btn btn-danger eliminar_owner">Eliminar</button>
+              <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-expanded="false">
+                  Acción
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button type="button" 
+                    data-id="' . $owner['Id'] . '" 
+                    data-name="' . $owner['Name'] . '"
+                    data-telephone="' . $owner['Telephone'] . '"
+                    data-email="' . $owner['Email'] . '"
+                    data-identificationnumber="' . $owner['IdentificationNumber'] . '"
+                    data-address="' . $owner['Address'] . '"
+                    class="dropdown-item editar_owner">Editar</button></li>
+                  <li><button type="button" data-id="' . $owner['Id'] . '" class="dropdown-item eliminar_owner">Eliminar</button></li>
+                </ul>
+              </div>
             </td>
           </tr>';
       }
@@ -67,11 +73,11 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="addOwnerModalLabel">Agregar Tipo de Propiedad</h5>
+                    <h5 class="modal-title" id="addOwnerModalLabel">Dueño de Propiedad</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form id="addOwnerForm" method="POST" action="add_owner.php">
+                    <form id="addOwnerForm" class="needs-validation" novalidate>
                       <div class="mb-3">
                         <input type="hidden" name="id" id="id">
                         <label for="name" class="form-label">Nombre</label>
@@ -107,7 +113,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary" id="agregar_owner">Guardar</button>
+                        <button type="button" class="btn btn-primary" id="agregar_owner">Guardar</button>
                       </div>
                     </form>
                   </div>
@@ -137,7 +143,7 @@
           if (data = 'success') {
             let toasthtml = `
               <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-                <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="toastMessage" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
                   <div class="toast-header">
                     <strong class="me-auto">Exito</strong><button type="button" onclick="reloadOwner();" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                   </div>
@@ -151,7 +157,7 @@
           } else {
             let toasthtml = `
               <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-                <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
                   <div class="toast-header">
                     <strong class="me-auto">Error</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                   </div>
@@ -171,7 +177,7 @@
         error: function() {
           let toasthtml = `
             <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-              <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                   <strong class="me-auto">Error</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
@@ -227,7 +233,7 @@
         if (data = 'success') {
           let toasthtml = `
             <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-              <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div id="toastMessage" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                   <strong class="me-auto">Exito</strong><button type="button" onclick="reloadOwner();" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
@@ -240,7 +246,7 @@
         } else {
           let toasthtml = `
             <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-              <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                   <strong class="me-auto">Error</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
@@ -260,7 +266,7 @@
       error: function() {
         let toasthtml = `
           <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-            <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
               <div class="toast-header">
                 <strong class="me-auto">Error</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
               </div>
@@ -287,4 +293,13 @@
       },
     });
   }
+
+  $(document).ready(function() {
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    const dropdown = [...dropdowns].map((dropdownToggleEl) => new bootstrap.Dropdown(dropdownToggleEl, {
+      popperConfig(defaultBsPopperConfig) {
+        return {...defaultBsPopperConfig, strategy: 'fixed' };
+      }
+    }));
+  });
 </script>

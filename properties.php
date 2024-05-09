@@ -22,7 +22,7 @@
                     <th>Dirección</th>
                     <th>Área</th>
                     <th>Área de Construcción</th>
-                    <th width="15%">Acción</th>
+                    <th width="5%">Acción</th>
                   </tr>
                 </thead>
                 <tbody>';
@@ -44,17 +44,23 @@
                   <td>' . $property['Area'] . '</td>
                   <td>' . $property['ConstructionArea'] . '</td>
                   <td>
-                    <button type="button" 
-                      data-id="' . $property['Id'] . '" 
-                      data-propertytype="' . $propertyType['Id'] . '" 
-                      data-owner="' . $owner['Id'] . '"
-                      data-number="' . $property['Number'] . '"
-                      data-address="' . $property['Address'] . '"
-                      data-area="' . $property['Area'] . '"
-                      data-constructionarea="' . $property['ConstructionArea'] . '"
-                      class="btn btn-primary editar_propiedad">Editar
-                    </button>
-                    <button type="button" data-id="' . $property['Id'] . '" class="btn btn-danger eliminar_propiedad">Eliminar</button>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-expanded="false">
+                        Acción
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><button type="button" 
+                          data-id="' . $property['Id'] . '" 
+                          data-propertytype="' . $propertyType['Id'] . '" 
+                          data-owner="' . $owner['Id'] . '"
+                          data-number="' . $property['Number'] . '"
+                          data-address="' . $property['Address'] . '"
+                          data-area="' . $property['Area'] . '"
+                          data-constructionarea="' . $property['ConstructionArea'] . '"
+                          class="dropdown-item editar_propiedad">Editar</button></li>
+                        <li><button type="button" data-id="' . $property['Id'] . '" class="dropdown-item eliminar_propiedad">Eliminar</button></li>
+                      </ul>
+                    </div>
                   </td>
                 </tr>';
     }
@@ -70,7 +76,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="addPropertyModalLabel">Agregar Propiedad</h5>
+                    <h5 class="modal-title" id="addPropertyModalLabel">Propiedad</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -152,7 +158,7 @@
           if (data = 'success') {
             let toasthtml = `
               <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-                <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="toastMessage" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
                   <div class="toast-header">
                     <strong class="me-auto">Exito</strong><button type="button" onclick="reloadProperty();" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                   </div>
@@ -166,7 +172,7 @@
           } else {
             let toasthtml = `
               <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-                <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
                   <div class="toast-header">
                     <strong class="me-auto">Error</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                   </div>
@@ -186,7 +192,7 @@
         error: function() {
           let toasthtml = `
             <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-              <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                   <strong class="me-auto">Error</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
@@ -244,7 +250,7 @@
         if (data = 'success') {
           let toasthtml = `
             <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-              <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div id="toastMessage" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                   <strong class="me-auto">Exito</strong><button type="button" onclick="reloadProperty();" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
@@ -257,7 +263,7 @@
         } else {
           let toasthtml = `
             <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-              <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                   <strong class="me-auto">Error</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
@@ -277,7 +283,7 @@
       error: function() {
         let toasthtml = `
           <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-            <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div id="toastMessage" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
               <div class="toast-header">
                 <strong class="me-auto">Error</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
               </div>
@@ -304,4 +310,13 @@
       },
     });
   }
+
+  $(document).ready(function() {
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    const dropdown = [...dropdowns].map((dropdownToggleEl) => new bootstrap.Dropdown(dropdownToggleEl, {
+      popperConfig(defaultBsPopperConfig) {
+        return {...defaultBsPopperConfig, strategy: 'fixed' };
+      }
+    }));
+  });
 </script>
