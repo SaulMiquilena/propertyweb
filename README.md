@@ -1,8 +1,34 @@
 # propertyweb
 Proyecto de gestión de propiedades
 
+## Sobre el proyecto
+Es una aplicación de una sola página (SPA), las prácticas empleadas en la aplicación, son separación de interes y modularidad.
+
+Se sigue la estructura general de el patrón Modelo-Vista-Controlador (MVC), donde el marcado HTML representa la Vista, los archivos PHP (`properties.php`, `property_types.php`, `owners.php `) maneja la lógica y la recuperación de datos, y el código JavaScript maneja el comportamiento dinámico y la interacción con el servidor usando AJAX.
+
+En el archivo `db.php` se encapsulan las operaciones de la base de datos dentro de funciones que proporcionan una interfaz para acceder y manipular datos.
+
+La estructura:
+
+Modelo:
+  - `db.php`
+    
+Vista:
+  - `index.php`
+  - `owners.php`
+  - `property_types.php`
+  - `properties.php`
+    
+Controlador:
+  - `addOwner.php`
+  - `deleteOwner.php`
+  - `addPropertyType.php`
+  - `deleteOwner.php`
+  - `addProperty.php`
+  - `deleteProperty.php`
+
 ## Demo del proyecto
-Visita `https://propertyweb.saulmiquilena.xyz/`
+Visita [https://propertyweb.saulmiquilena.xyz/](https://propertyweb.saulmiquilena.xyz/)
 
 ## Empezando
 Para comenzar con este proyecto, sigue estos pasos:
