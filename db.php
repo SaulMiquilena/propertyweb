@@ -23,7 +23,7 @@
   function getPropertyTypes() {
     global $conn;
 
-    $sql = 'SELECT * FROM `PropertyOwner` WHERE `Deleted` = 0';
+    $sql = 'SELECT * FROM `PropertyType` WHERE `Deleted` = 0';
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll();
@@ -85,9 +85,9 @@
   function createPropertyType($data) {
     global $conn;
 
-    $sql = 'INSERT INTO `PropertType` (`Description`) VALUES (:description)';
+    $sql = 'INSERT INTO `PropertyType` (`Description`) VALUES (:description)';
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':description', $data['description']);
+    $stmt->bindParam(':description', $data['Description']);
     return $stmt->execute();
   }
 
@@ -115,7 +115,7 @@
     $stmt->bindParam(':Address', $data['Address']);
     $stmt->bindParam(':Area', $data['Area']);
     $stmt->bindParam(':ConstructionArea', $data['ConstructionArea']);
-    $stmt->bindParam(':id', $data['id']);
+    $stmt->bindParam(':id', $data['Id']);
     return $stmt->execute();
   }
 
@@ -124,8 +124,8 @@
 
     $sql = 'UPDATE `PropertyType` SET `Description` = :description WHERE id = :id';
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':description', $data['description']);
-    $stmt->bindParam(':id', $data['id']);
+    $stmt->bindParam(':description', $data['Description']);
+    $stmt->bindParam(':id', $data['Id']);
     return $stmt->execute();
   }
 
@@ -139,16 +139,15 @@
     $stmt->bindParam(':Email', $data['Email']);
     $stmt->bindParam(':IdentificationNumber', $data['IdentificationNumber']);
     $stmt->bindParam(':Address', $data['Address']);
-    $stmt->bindParam(':id', $data['id']);
+    $stmt->bindParam(':id', $data['Id']);
     return $stmt->execute();
   }
 
   function deleteProperty($id) {
     global $conn;
 
-    $sql = 'UPDATE `Property` SET `Deleted` = :Deleted WHERE id = :id';
+    $sql = 'UPDATE `Property` SET `Deleted` = 1 WHERE id = :id';
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':Deleted', 1);
     $stmt->bindParam(':id', $id);
     return $stmt->execute();
   }
@@ -156,9 +155,8 @@
   function deletePropertyType($id) {
     global $conn;
 
-    $sql = 'UPDATE `PropertyType` SET `Deleted` = :Deleted WHERE id = :id';
+    $sql = 'UPDATE `PropertyType` SET `Deleted` = 1 WHERE id = :id';
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':Deleted', 1);
     $stmt->bindParam(':id', $id);
     return $stmt->execute();
   }
@@ -166,9 +164,8 @@
   function deleteOwner($id) {
     global $conn;
 
-    $sql = 'UPDATE `Owner` SET `Deleted` = :Deleted WHERE id = :id';
+    $sql = 'UPDATE `Owner` SET `Deleted` = 1 WHERE id = :id';
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':Deleted', 1);
     $stmt->bindParam(':id', $id);
     return $stmt->execute();
   }
